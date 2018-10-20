@@ -17,7 +17,8 @@ namespace GameTest1
                 myLabyrinth[i] = new GameObject();
                 myLabyrinth[i].teg = Tegs.NonToucher;
                 myLabyrinth[i].viev = SViews.SHARP;
-                myLabyrinth[i].color = GameColors.White;
+                myLabyrinth[i].color = GameColors.Grey;
+                myLabyrinth[i].backColor = GameColors.DarkGrey;
             }
             myLabyrinth[0].area = new Area().SetArea(1, 8, 1, 21);
             myLabyrinth[1].area = new Area().SetArea(22, 8, 20, 3);

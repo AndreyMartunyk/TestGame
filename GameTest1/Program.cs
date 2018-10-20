@@ -86,7 +86,7 @@ namespace GameTest1
                 // помещение новых координат в старые
                 PositionCl.NewToOld(ref level_1);
 
-                Thread.Sleep(15);
+                Thread.Sleep(10);
 #if DEBUG
                 if (frameTime % 5 == 0)
                 {

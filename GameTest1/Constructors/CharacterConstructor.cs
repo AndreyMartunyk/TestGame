@@ -22,7 +22,8 @@ namespace GameTest1
             player.area.To.newPosY = coordinationY;
             player.area.To.oldPosY = coordinationY;
 
-            player.color = GameColors.Yellow;
+            player.color = GameColors.DarkGrey;
+            player.backColor = GameColors.Yellow;
             player.damage = 5;
             player.HP = 100;
             player.name = "player";
