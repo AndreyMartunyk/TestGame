@@ -37,6 +37,7 @@ namespace GameTest1
         public static void Show (GameObject gameObject)
         {
             MakeTextColor(gameObject.color);
+            MakeBackgroundColor(gameObject.backColor);
             int k = 0;
             for (int i = gameObject.area.From.newPosY; i <= gameObject.area.To.newPosY; i++)
             {
@@ -48,6 +49,7 @@ namespace GameTest1
                 }
             }
             ReturnDefaultColor();
+            ReturnDefaultBackgroundColor();
         } 
 
         public static void Hide(GameObject gameObject)
@@ -128,6 +130,9 @@ namespace GameTest1
                 case GameColors.Yellow:
                     consoleColor = ConsoleColor.Yellow;
                     break;
+                case GameColors.DarkGrey:
+                    consoleColor = ConsoleColor.DarkGray;
+                    break;
                 default:
                     break;
             }
@@ -149,5 +154,44 @@ namespace GameTest1
             }
         }
 
+        public static void MakeBackgroundColor(GameColors color)
+        {
+            ConsoleColor consoleColor = ConsoleColor.Black;
+            switch (color)
+            {
+                case GameColors.None:
+                    break;
+                case GameColors.Red:
+                    consoleColor = ConsoleColor.Red;
+                    break;
+                case GameColors.Cyan:
+                    consoleColor = ConsoleColor.Cyan;
+                    break;
+                case GameColors.Grey:
+                    consoleColor = ConsoleColor.Gray;
+                    break;
+                case GameColors.Green:
+                    consoleColor = ConsoleColor.Green;
+                    break;
+                case GameColors.White:
+                    consoleColor = ConsoleColor.White;
+                    break;
+                case GameColors.Yellow:
+                    consoleColor = ConsoleColor.Yellow;
+                    break;
+                case GameColors.DarkGrey:
+                    consoleColor = ConsoleColor.DarkGray;
+                    break;
+                default:
+                    break;
+            }
+
+            Console.BackgroundColor = consoleColor;
+        }
+
+        public static void ReturnDefaultBackgroundColor()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace GameTest1
         public string name;
         public Area area;
         public GameColors color;
+        public GameColors backColor;
         public float speed;
         public int HP;
         public int damage;
@@ -33,7 +34,7 @@ namespace GameTest1
                 speed = 0,
                 HP = 0,
                 damage = 0,
-                viev = "#####################################",
+                viev = SViews.SHARP,
                 teg = Tegs.None,
                 area = new Area
                 {
@@ -94,28 +95,6 @@ namespace GameTest1
             gameObject.teg = nameOfTeg;
             return gameObject;
         }
-
-        //public static GameObject CreateGameObject(int X, int Y, int xSize, int ySize, string viev, Tegs nameOfTeg)
-        //{
-        //    GameObject gameObject = CreateEmptyGameObject();
-        //    gameObject.area.From = new Position
-        //    {
-        //        newPosX = X,
-        //        newPosY = Y,
-        //        oldPosX = X,
-        //        oldPosY = Y
-        //    };
-        //    gameObject.area.To = new Position
-        //    {
-        //        newPosX = X + xSize,
-        //        newPosY = Y + ySize,
-        //        oldPosX = X + xSize,
-        //        oldPosY = Y + ySize
-        //    };
-        //    gameObject.viev = viev;
-        //    gameObject.teg = nameOfTeg;
-        //    return gameObject;
-        //}
 
 
     }

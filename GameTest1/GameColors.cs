@@ -15,7 +15,8 @@ namespace GameTest1
         Grey,
         Green,
         White,
-        Yellow
+        Yellow,
+        DarkGrey
     }
 
 
