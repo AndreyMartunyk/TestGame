@@ -32,7 +32,10 @@ namespace GameTest1
 
             ConsoleKey key = ConsoleKey.F14;
             CollisionChecker collChecker = new CollisionChecker();
-            bool actionDone = true;
+            UnitActions controllerAction = UnitActions.None;
+            Controller controller = new Controller();
+            Brain brain = new Brain();
+            ActionMaker actionMaker = new ActionMaker();
 
             UI.Show(level_1);
 
@@ -43,39 +46,20 @@ namespace GameTest1
             {
                 //   ---=== INPUT ===---
 
-                if (Console.KeyAvailable && actionDone) // проверка на то, была ли нажата кнопка
+                if (Console.KeyAvailable) // проверка на то, была ли нажата кнопка
                 {
-                    key = Console.ReadKey(true).Key;
-                    actionDone = false;
+                    //key = Console.ReadKey(true).Key;
+                    brain.SetPlayerAction(controller.GetActionFromKey(Console.ReadKey(true).Key));
                 }
-
                 // Обработка вводных данных
                 //controller от водимого знака возвращает енам с Юзер екшн
-                switch (key)
-                {
-                    case ConsoleKey.A:
-                        PositionCl.Move(ref level_1, ref level_1.gameObj[0], 0, Direction.Left);
-                        break;
-                    case ConsoleKey.D:
-                        PositionCl.Move(ref level_1, ref level_1.gameObj[0], 0, Direction.Right);
-                        break;
-                    case ConsoleKey.W:
-                        PositionCl.Move(ref level_1, ref level_1.gameObj[0], 0, Direction.Top);
-                        break;
-                    case ConsoleKey.S:
-                        PositionCl.Move(ref level_1, ref level_1.gameObj[0], 0, Direction.Down);
-                        break;
-                    case ConsoleKey.Escape:
-                        Console.Write("Good by! Press any key to continue... ");
-                        Console.ReadKey();
-                        break;
-                    default:
-                        //никак не реагируем при нажатиии незадекларируемой клавиши
-                        break;
-                }
-                actionDone = true;
 
-                key = ConsoleKey.F14;
+
+                actionMaker.MakeAction(ref level_1, ref  brain);
+
+
+
+                //brain.SetPlayerAction(UnitActions.None);
 
                 // проверка на выход за рамки консоли
                 PositionCl.CheckOverflow(ref level_1, Settings.GetGameArea());
@@ -86,7 +70,7 @@ namespace GameTest1
                 // помещение новых координат в старые
                 PositionCl.NewToOld(ref level_1);
 
-                Thread.Sleep(10);
+                Thread.Sleep(15);
 #if DEBUG
                 if (frameTime % 5 == 0)
                 {

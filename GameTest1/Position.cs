@@ -15,7 +15,7 @@ namespace GameTest1
         //сделать одну на основе другой
     }
 
-    public struct SimplePos
+    public struct Coordinate
         //rename coordinate
     {
         public int x;
@@ -53,12 +53,6 @@ namespace GameTest1
             {
                 PositionCl.GetBackPos(ref gameObject);
             }
-
-
-#if DEBUG
-            //GameLogger.AddLog(ref Program.log, string.Format("Передвижение {0} в направлении {1}", gameObject.name, dir));
-
-#endif
 
         }
 

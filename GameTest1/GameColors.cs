@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GameTest1
 {
 
-    public enum GameColors
+    public enum GameColors: byte
     {
         None,
         Red,

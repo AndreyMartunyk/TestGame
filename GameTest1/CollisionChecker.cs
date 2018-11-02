@@ -79,8 +79,8 @@ namespace GameTest1
             Direction backDir;
             FindFaceAndBack(objFace, out faceDir, out backDir);
 
-            SimplePos[] facePos = GetSide(objFace, faceDir);
-            SimplePos[] backPos = GetSide(objBack, backDir);
+            Coordinate[] facePos = GetSide(objFace, faceDir);
+            Coordinate[] backPos = GetSide(objBack, backDir);
 
             for (int i = 0; i < facePos.Length; i++)
             {
@@ -149,43 +149,43 @@ namespace GameTest1
             return dir;
         }
 
-        private SimplePos[] GetSide(GameObject gameObj, Direction dir)
+        private Coordinate[] GetSide(GameObject gameObj, Direction dir)
         {
-            SimplePos[] side;
+            Coordinate[] side;
 
             switch (dir)
             {
                 case Direction.Top:
-                    side = new SimplePos[gameObj.area.To.newPosX - gameObj.area.From.newPosX + 1];
+                    side = new Coordinate[gameObj.area.To.newPosX - gameObj.area.From.newPosX + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new SimplePos { y = gameObj.area.From.newPosY, x = gameObj.area.From.newPosX + i };
+                        side[i] = new Coordinate { y = gameObj.area.From.newPosY, x = gameObj.area.From.newPosX + i };
                     }
                 break;
                 case Direction.Down:
-                    side = new SimplePos[gameObj.area.To.newPosX - gameObj.area.From.newPosX + 1];
+                    side = new Coordinate[gameObj.area.To.newPosX - gameObj.area.From.newPosX + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new SimplePos { y = gameObj.area.To.newPosY, x = gameObj.area.From.newPosX + i };
+                        side[i] = new Coordinate { y = gameObj.area.To.newPosY, x = gameObj.area.From.newPosX + i };
                     }
                     break;
                 case Direction.Left:
-                    side = new SimplePos[gameObj.area.To.newPosY - gameObj.area.From.newPosY + 1];
+                    side = new Coordinate[gameObj.area.To.newPosY - gameObj.area.From.newPosY + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new SimplePos { y = gameObj.area.From.newPosY + i, x = gameObj.area.From.newPosX};
+                        side[i] = new Coordinate { y = gameObj.area.From.newPosY + i, x = gameObj.area.From.newPosX};
                     }
                     break;
                 case Direction.Right:
-                    side = new SimplePos[gameObj.area.To.newPosY - gameObj.area.From.newPosY + 1];
+                    side = new Coordinate[gameObj.area.To.newPosY - gameObj.area.From.newPosY + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new SimplePos { y = gameObj.area.From.newPosY + i, x = gameObj.area.To.newPosX };
+                        side[i] = new Coordinate { y = gameObj.area.From.newPosY + i, x = gameObj.area.To.newPosX };
                     }
                     break;
                 default:
                 case Direction.None:
-                    side = new SimplePos[0];
+                    side = new Coordinate[0];
 #if DEBUG
                     GameLogger.AddLog(ref Program.log, "In Function CollisionChecker.GetSide switch get none or default");
 #endif

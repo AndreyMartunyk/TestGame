@@ -42,11 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionMaker.cs" />
     <Compile Include="Area.cs" />
+    <Compile Include="Brain.cs" />
     <Compile Include="Constructors\CharacterConstructor.cs" />
     <Compile Include="CollisionChecker.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="FpsCalculator.cs" />
+    <Compile Include="GameActions.cs" />
     <Compile Include="GameColors.cs" />
     <Compile Include="GameLog.cs" />
     <Compile Include="GameMap.cs" />
