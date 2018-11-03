@@ -34,6 +34,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,7 +64,7 @@
     <Compile Include="GameObject.cs" />
     <Compile Include="MyConst.cs" />
     <Compile Include="SViews.cs" />
-    <Compile Include="Tegs.cs" />
+    <Compile Include="Tags.cs" />
     <Compile Include="UI\ModelViev.cs" />
     <Compile Include="UI\UI.cs" />
     <Compile Include="Position.cs" />
@@ -72,6 +74,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <Compile Include="Direction.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TypesOfGameObjects.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

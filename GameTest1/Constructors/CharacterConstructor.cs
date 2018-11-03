@@ -28,7 +28,7 @@ namespace GameTest1
             player.HP = 100;
             player.name = "player";
             player.speed = 10;
-            player.teg = Tegs.Player;
+            player.teg = Tags.Player;
             player.viev = "(o_o)";
                            
 

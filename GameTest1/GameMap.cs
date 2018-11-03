@@ -49,7 +49,7 @@ namespace GameTest1
         public GameObject GetDoorZone(Direction dir)
         {
             GameObject doorZone = new GameObject();
-            doorZone.teg = Tegs.Zone;
+            doorZone.teg = Tags.Zone;
 
             switch (dir)
             {

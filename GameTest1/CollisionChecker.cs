@@ -23,7 +23,7 @@ namespace GameTest1
                 {
                     collisionEvent = GameEvents.CollisionObject;
                         
-                    if (moovingObj.teg == Tegs.Player && level.gameObj[i].teg == Tegs.DamageToucher)
+                    if (moovingObj.teg == Tags.Player && level.gameObj[i].teg == Tags.DamageToucher)
                     {
                         moovingObj.HP -= level.gameObj[i].damage;
                         collisionEvent = GameEvents.CollisionEnemy;
@@ -32,7 +32,7 @@ namespace GameTest1
                             string.Format("Player damaged from enemy on {0}", level.gameObj[i].damage));
 #endif
                     }
-                    else if (moovingObj.teg == Tegs.DamageToucher && level.gameObj[i].teg == Tegs.Player)
+                    else if (moovingObj.teg == Tags.DamageToucher && level.gameObj[i].teg == Tags.Player)
                     {
                         moovingObj.HP -= level.gameObj[i].damage;
                         collisionEvent = GameEvents.CollisionEnemy;

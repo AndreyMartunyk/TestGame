@@ -15,7 +15,7 @@ namespace GameTest1
             for (int i = 0; i < myLabyrinth.Length; i++)
             {
                 myLabyrinth[i] = new GameObject();
-                myLabyrinth[i].teg = Tegs.Stone;
+                myLabyrinth[i].teg = Tags.Stone;
                 myLabyrinth[i].viev = SViews.SHARP;
                 myLabyrinth[i].color = GameColors.Grey;
                 myLabyrinth[i].backColor = GameColors.DarkGrey;

@@ -18,7 +18,7 @@ namespace GameTest1
         public int HP;
         public int damage;
         public string viev;
-        public Tegs teg;
+        public Tags teg;
     }
 
     public class GameObjectInit
@@ -35,7 +35,7 @@ namespace GameTest1
                 HP = 0,
                 damage = 0,
                 viev = SViews.SHARP,
-                teg = Tegs.None,
+                teg = Tags.None,
                 area = new Area
                 {
                     From = new Position
@@ -85,7 +85,7 @@ namespace GameTest1
         //    return gameObject;
         //}
 
-        public static GameObject CreateGameObject(Area ar, string viev, Tegs nameOfTeg)
+        public static GameObject CreateGameObject(Area ar, string viev, Tags nameOfTeg)
         {
             GameObject gameObject = CreateGameObject(ar, viev);
             gameObject.teg = nameOfTeg;

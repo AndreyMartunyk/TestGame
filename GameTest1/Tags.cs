@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameTest1
 {
-    public enum Tegs
+    public enum Tags
     {
         None,
         Player,         // тег указывающий непосредсвенно на игрока 
