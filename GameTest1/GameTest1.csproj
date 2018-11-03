@@ -48,9 +48,10 @@
     <Compile Include="Constructors\CharacterConstructor.cs" />
     <Compile Include="CollisionChecker.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="Coordinate.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="FpsCalculator.cs" />
-    <Compile Include="GameActions.cs" />
+    <Compile Include="UnitActions.cs" />
     <Compile Include="GameColors.cs" />
     <Compile Include="GameLog.cs" />
     <Compile Include="GameMap.cs" />

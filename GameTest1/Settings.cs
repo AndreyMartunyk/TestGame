@@ -36,20 +36,8 @@ namespace GameTest1
         {
             gameArea = new Area
             {
-                From = new Position
-                {
-                    newPosX = 0,
-                    newPosY = 0,
-                    oldPosX = 0,
-                    oldPosY = 0
-                },
-                To  = new Position
-                {
-                    newPosX = 80,
-                    newPosY = 40,
-                    oldPosX = 80,
-                    oldPosY = 40
-                }
+                From = new Position().SetPosition(0,0),
+                To = new Position().SetPosition(80,40)
             };
 
             return gameArea;

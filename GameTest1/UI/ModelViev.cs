@@ -18,7 +18,7 @@ namespace GameTest1
             {
                 Console.SetCursorPosition(i, 0); // верхняя линия
                 Console.Write(" ");
-                Console.SetCursorPosition(i, Settings.GetGameArea().To.newPosY - 1); // нижняя линия
+                Console.SetCursorPosition(i, Settings.GetGameArea().To.newPos.y - 1); // нижняя линия
                 Console.Write(" ");
             }
             for (int i = 0; i < Settings.Height - 1; i++)
@@ -29,9 +29,9 @@ namespace GameTest1
                 Console.Write(" ");
             }
 
-            for (int i = 0; i <= Settings.GetGameArea().To.newPosY - 1; i++)
+            for (int i = 0; i <= Settings.GetGameArea().To.newPos.y - 1; i++)
             {
-                Console.SetCursorPosition(Settings.GetGameArea().To.newPosX - 1, i); // левая линия
+                Console.SetCursorPosition(Settings.GetGameArea().To.newPos.x - 1, i); // левая линия
                 Console.Write(" ");
 
             }

@@ -12,15 +12,15 @@ namespace GameTest1
         {
             GameObject player;
             player = new GameObject();
-            player.area.From.newPosX = coordinationX;
-            player.area.From.oldPosX = coordinationX;
-            player.area.From.newPosY = coordinationY;
-            player.area.From.oldPosY = coordinationY;
+            player.area.From.newPos.x = coordinationX;
+            player.area.From.oldPos.x = coordinationX;
+            player.area.From.newPos.y = coordinationY;
+            player.area.From.oldPos.y = coordinationY;
 
-            player.area.To.newPosX = coordinationX + 4;
-            player.area.To.oldPosX = coordinationX + 4;
-            player.area.To.newPosY = coordinationY;
-            player.area.To.oldPosY = coordinationY;
+            player.area.To.newPos.x = coordinationX + 4;
+            player.area.To.oldPos.x = coordinationX + 4;
+            player.area.To.newPos.y = coordinationY;
+            player.area.To.oldPos.y = coordinationY;
 
             player.color = GameColors.DarkGrey;
             player.backColor = GameColors.Yellow;

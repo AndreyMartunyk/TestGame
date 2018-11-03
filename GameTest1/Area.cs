@@ -13,28 +13,38 @@ namespace GameTest1
 
         public int GetHeight()
         {
-            return To.newPosY - From.newPosY + 1;
+            return To.newPos.y - From.newPos.y + 1;
         }
 
         public int GetWidth()
         {
-            return To.newPosX - From.newPosX + 1;
+            return To.newPos.x - From.newPos.x + 1;
         }
 
         public Area SetArea(int startX, int startY, int height, int width)
         {
             Area ar = new Area();
-            ar.From.newPosX = startX;
-            ar.From.oldPosX = startX;
-            ar.From.newPosY = startY;
-            ar.From.oldPosY = startY;
+            ar.From.newPos.x = startX;
+            ar.From.oldPos.x = startX;
+            ar.From.newPos.y = startY;
+            ar.From.oldPos.y = startY;
 
-            ar.To.newPosX = startX + width - 1;
-            ar.To.oldPosX = startX + width - 1;
-            ar.To.newPosY = startY + height - 1;
-            ar.To.oldPosY = startY + height - 1;
+            ar.To.newPos.x = startX + width - 1;
+            ar.To.oldPos.x = startX + width - 1;
+            ar.To.newPos.y = startY + height - 1;
+            ar.To.oldPos.y = startY + height - 1;
 
             return ar;
         }
+
+        public void MoveNew (int x, int y)
+        {
+            From.newPos.x += x * 2;
+            From.newPos.y += y;
+
+            To.newPos.x += x * 2;
+            To.newPos.y += y;
+        }
+
     }
 }

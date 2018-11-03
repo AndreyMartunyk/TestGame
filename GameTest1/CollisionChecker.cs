@@ -66,8 +66,8 @@ namespace GameTest1
 
             //return isChange;
 
-            return !((gameObj.area.From.newPosX == gameObj.area.From.oldPosX
-                && gameObj.area.From.newPosY == gameObj.area.From.oldPosY));
+            return !((gameObj.area.From.newPos.x == gameObj.area.From.oldPos.x
+                && gameObj.area.From.newPos.y == gameObj.area.From.oldPos.y));
         }
 
         private bool IsFaceOnBack(GameObject objFace, GameObject objBack)
@@ -129,19 +129,19 @@ namespace GameTest1
         {
             Direction dir = Direction.None;
 
-            if (gameObj.area.From.newPosX > gameObj.area.From.oldPosX)
+            if (gameObj.area.From.newPos.x > gameObj.area.From.oldPos.x)
             {
                 dir = Direction.Right;
             }
-            else if (gameObj.area.From.newPosX < gameObj.area.From.oldPosX)
+            else if (gameObj.area.From.newPos.x < gameObj.area.From.oldPos.x)
             {
                 dir = Direction.Left;
             }
-            else if (gameObj.area.From.newPosY > gameObj.area.From.oldPosY)
+            else if (gameObj.area.From.newPos.y > gameObj.area.From.oldPos.y)
             {
                 dir = Direction.Down;
             }
-            else if (gameObj.area.From.newPosY < gameObj.area.From.oldPosY)
+            else if (gameObj.area.From.newPos.y < gameObj.area.From.oldPos.y)
             {
                 dir = Direction.Top;
             }
@@ -156,31 +156,31 @@ namespace GameTest1
             switch (dir)
             {
                 case Direction.Top:
-                    side = new Coordinate[gameObj.area.To.newPosX - gameObj.area.From.newPosX + 1];
+                    side = new Coordinate[gameObj.area.To.newPos.x - gameObj.area.From.newPos.x + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new Coordinate { y = gameObj.area.From.newPosY, x = gameObj.area.From.newPosX + i };
+                        side[i] = new Coordinate { y = gameObj.area.From.newPos.y, x = gameObj.area.From.newPos.x + i };
                     }
                 break;
                 case Direction.Down:
-                    side = new Coordinate[gameObj.area.To.newPosX - gameObj.area.From.newPosX + 1];
+                    side = new Coordinate[gameObj.area.To.newPos.x - gameObj.area.From.newPos.x + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new Coordinate { y = gameObj.area.To.newPosY, x = gameObj.area.From.newPosX + i };
+                        side[i] = new Coordinate { y = gameObj.area.To.newPos.y, x = gameObj.area.From.newPos.x + i };
                     }
                     break;
                 case Direction.Left:
-                    side = new Coordinate[gameObj.area.To.newPosY - gameObj.area.From.newPosY + 1];
+                    side = new Coordinate[gameObj.area.To.newPos.y - gameObj.area.From.newPos.y + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new Coordinate { y = gameObj.area.From.newPosY + i, x = gameObj.area.From.newPosX};
+                        side[i] = new Coordinate { y = gameObj.area.From.newPos.y + i, x = gameObj.area.From.newPos.x};
                     }
                     break;
                 case Direction.Right:
-                    side = new Coordinate[gameObj.area.To.newPosY - gameObj.area.From.newPosY + 1];
+                    side = new Coordinate[gameObj.area.To.newPos.y - gameObj.area.From.newPos.y + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new Coordinate { y = gameObj.area.From.newPosY + i, x = gameObj.area.To.newPosX };
+                        side[i] = new Coordinate { y = gameObj.area.From.newPos.y + i, x = gameObj.area.To.newPos.x };
                     }
                     break;
                 default:

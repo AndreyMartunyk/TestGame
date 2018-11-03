@@ -26,8 +26,8 @@ namespace GameTest1
 
         public static void Refresh (GameObject gameObject)
         {
-            if (gameObject.area.From.newPosX != gameObject.area.From.oldPosX ||
-                gameObject.area.From.newPosY != gameObject.area.From.oldPosY)
+            if (gameObject.area.From.newPos.x != gameObject.area.From.oldPos.x ||
+                gameObject.area.From.newPos.y != gameObject.area.From.oldPos.y)
             {
                 Hide(gameObject);
                 Show(gameObject);
@@ -39,9 +39,9 @@ namespace GameTest1
             MakeTextColor(gameObject.color);
             MakeBackgroundColor(gameObject.backColor);
             int k = 0;
-            for (int i = gameObject.area.From.newPosY; i <= gameObject.area.To.newPosY; i++)
+            for (int i = gameObject.area.From.newPos.y; i <= gameObject.area.To.newPos.y; i++)
             {
-                for (int y = gameObject.area.From.newPosX; y <= gameObject.area.To.newPosX; y++)
+                for (int y = gameObject.area.From.newPos.x; y <= gameObject.area.To.newPos.x; y++)
                 {
                     Console.SetCursorPosition(y, i);
                     Console.Write(gameObject.viev[k]);
@@ -54,9 +54,9 @@ namespace GameTest1
 
         public static void Hide(GameObject gameObject)
         {
-            for (int i = gameObject.area.From.oldPosY; i <= gameObject.area.To.oldPosY; i++)
+            for (int i = gameObject.area.From.oldPos.y; i <= gameObject.area.To.oldPos.y; i++)
             {
-                for (int y = gameObject.area.From.oldPosX; y <= gameObject.area.To.oldPosX; y++)
+                for (int y = gameObject.area.From.oldPos.x; y <= gameObject.area.To.oldPos.x; y++)
                 {
                     Console.SetCursorPosition(y, i);
                     Console.Write(" ");

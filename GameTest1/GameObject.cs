@@ -40,17 +40,13 @@ namespace GameTest1
                 {
                     From = new Position
                     {
-                        newPosX = 0,
-                        newPosY = 0,
-                        oldPosX = 0,
-                        oldPosY = 0
+                        newPos = new Coordinate { x = 0, y = 0 },
+                        oldPos = new Coordinate { x = 0, y = 0 },
                     },
                     To = new Position
                     {
-                        newPosX = 0,
-                        newPosY = 0,
-                        oldPosX = 0,
-                        oldPosY = 0
+                        newPos = new Coordinate { x = 0, y = 0 },
+                        oldPos = new Coordinate { x = 0, y = 0 },
                     }
                 }
             };
