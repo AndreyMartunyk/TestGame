@@ -46,5 +46,14 @@ namespace GameTest1
             To.newPos.y += y;
         }
 
+        public Coordinate GetCenter()
+        {
+            Coordinate center = new Coordinate();
+            center.x = (From.newPos.x + To.newPos.x) / 2;
+            center.y = (From.newPos.y + To.newPos.y) / 2;
+
+            return center;
+        }
+
     }
 }

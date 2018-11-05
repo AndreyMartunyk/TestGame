@@ -8,34 +8,38 @@ namespace GameTest1
 {
     class ActionMaker
     {
-        public void MakeAction(ref GameRoom level, ref Brain brain)
+        public void MakeAction(ref GameRoom level, ref Brain brain, int frameTime)
         {
             for (int i = 0; i < level.countOfObjects; i++)
             {
-
-                MakeAction(ref level, ref level.gameObj[i], brain);
+                if (frameTime % level.gameObj[i].Slowness == 0)
+                {
+                    MakeAction(ref level, ref level.gameObj[i], brain);
+                }
+                
             }
 
             brain.SetPlayerAction(UnitActions.None); // для того что бы действие не дублировалось снова и снова
+            
         }
 
         public void MakeAction(ref GameRoom level, ref GameObject gameObject, Brain brain)
         {
-            UnitActions action = brain.MakeDecision(gameObject);
+            UnitActions action = brain.MakeDecision(level, gameObject);
 
             switch (action)
             {
                 case UnitActions.MoveRight:
-                    PositionCl.Move(ref level, ref gameObject, 0, Direction.Right);
+                    PositionCl.Move(ref level, ref gameObject, Direction.Right);
                     break;
                 case UnitActions.MoveLeft:
-                    PositionCl.Move(ref level, ref gameObject, 0, Direction.Left);
+                    PositionCl.Move(ref level, ref gameObject, Direction.Left);
                     break;
                 case UnitActions.MoveDown:
-                    PositionCl.Move(ref level, ref gameObject, 0, Direction.Down);
+                    PositionCl.Move(ref level, ref gameObject, Direction.Down);
                     break;
                 case UnitActions.MoveTop:
-                    PositionCl.Move(ref level, ref gameObject, 0, Direction.Top);
+                    PositionCl.Move(ref level, ref gameObject, Direction.Top);
                     break;
                 case UnitActions.Stop:
                     break;

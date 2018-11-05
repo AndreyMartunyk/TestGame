@@ -24,15 +24,17 @@ namespace GameTest1
             level_1.CreateLevelStorage();
 
             CharacterConstructor characterConstructor = new CharacterConstructor();
-            GameObject player = characterConstructor.CreatePlayer(10, 10);
+            GameObject player = characterConstructor.CreatePlayer(10, 30);
+            GameObject bBeagle = characterConstructor.CreateBlindBeagle(12, 16);
             level_1.AddGameObject(player);
-
+            level_1.AddGameObject(bBeagle);
+            level_1.AddGameObject(characterConstructor.CreateBlindBeagle(30, 16));
+            level_1.AddGameObject(characterConstructor.CreateBlindBeagle(50, 16));
             
             level_1.AddMap(new MapConstructor().Tutorial_1());
 
-            ConsoleKey key = ConsoleKey.F14;
+ 
             CollisionChecker collChecker = new CollisionChecker();
-            UnitActions controllerAction = UnitActions.None;
             Controller controller = new Controller();
             Brain brain = new Brain();
             ActionMaker actionMaker = new ActionMaker();
@@ -55,7 +57,7 @@ namespace GameTest1
                 //controller от водимого знака возвращает енам с Юзер екшн
 
 
-                actionMaker.MakeAction(ref level_1, ref  brain);
+                actionMaker.MakeAction(ref level_1, ref  brain, frameTime);
 
 
 

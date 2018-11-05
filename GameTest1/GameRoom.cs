@@ -20,9 +20,10 @@ namespace GameTest1
             countOfObjects = 0;
         }
 
-        public void AddGameObject(GameObject gameObject)
+        public void AddGameObject(GameObject addingObject)
         {
-            gameObj[countOfObjects] = gameObject;
+            addingObject.index = countOfObjects;
+            gameObj[countOfObjects] = addingObject;
             ++countOfObjects;
         }
 

@@ -8,13 +8,13 @@ namespace GameTest1
 {
     class CollisionChecker
     {
-        public GameEvents CheckCollision(ref GameRoom level, GameObject moovingObj, int indexGameObj)
+        public GameEvents CheckCollision(ref GameRoom level, GameObject moovingObj)
         {
             GameEvents collisionEvent = GameEvents.NoneEvent;
 
             for (int i = 0; i < level.countOfObjects; i++)
             {
-                if (i == indexGameObj) // проверка на то, не проверяем ли мы игровой обьект с самим собой
+                if (i == moovingObj.index) // проверка на то, не проверяем ли мы игровой обьект с самим собой
                 {
                     continue;
                 }
@@ -23,7 +23,7 @@ namespace GameTest1
                 {
                     collisionEvent = GameEvents.CollisionObject;
                         
-                    if (moovingObj.teg == Tags.Player && level.gameObj[i].teg == Tags.DamageToucher)
+                    if (moovingObj.teg == Tags.Player && level.gameObj[i].teg == Tags.BlindBeagle)
                     {
                         moovingObj.HP -= level.gameObj[i].damage;
                         collisionEvent = GameEvents.CollisionEnemy;
@@ -32,7 +32,7 @@ namespace GameTest1
                             string.Format("Player damaged from enemy on {0}", level.gameObj[i].damage));
 #endif
                     }
-                    else if (moovingObj.teg == Tags.DamageToucher && level.gameObj[i].teg == Tags.Player)
+                    else if (moovingObj.teg == Tags.BlindBeagle && level.gameObj[i].teg == Tags.Player)
                     {
                         moovingObj.HP -= level.gameObj[i].damage;
                         collisionEvent = GameEvents.CollisionEnemy;

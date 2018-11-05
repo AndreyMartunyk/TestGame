@@ -27,30 +27,30 @@ namespace GameTest1
 
     public class PositionCl
     {
-        public static void Move(ref GameRoom level, ref GameObject gameObject, int indexGameObj, Direction dir, int countMove = 1)
+        public static void Move(ref GameRoom level, ref GameObject moovingObject, Direction dir, int countMove = 1)
         {
             switch (dir)
             {
                 case Direction.Top:
-                    gameObject.area.MoveNew(0, -countMove);
+                    moovingObject.area.MoveNew(0, -countMove);
                     break;
                 case Direction.Down:
-                    gameObject.area.MoveNew(0, countMove);
+                    moovingObject.area.MoveNew(0, countMove);
                     break;
                 case Direction.Left:
-                    gameObject.area.MoveNew(-countMove , 0);;
+                    moovingObject.area.MoveNew(-countMove , 0);;
                     break;
                 case Direction.Right:
-                    gameObject.area.MoveNew(countMove, 0);
+                    moovingObject.area.MoveNew(countMove, 0);
                     break;
                 default:
                     break;     
             }
 
             CollisionChecker collChecker = new CollisionChecker();
-            if (collChecker.CheckCollision(ref level, gameObject, indexGameObj) != GameEvents.NoneEvent)
+            if (collChecker.CheckCollision(ref level, moovingObject) != GameEvents.NoneEvent)
             {
-                PositionCl.GetBackPos(ref gameObject);
+                PositionCl.GetBackPos(ref moovingObject);
             }
 
         }
