@@ -12,12 +12,10 @@ namespace GameTest1
         // TODO all fields to Camel case
         public string ObjName;
         public Area ObjArea;
-        public GameColors Color;
-        public GameColors BackColor;
+        public ObjUI Ui;
         public float Slowness;
         public int HP;
         public int Damage;
-        public string Viev;
         public Tags ObjTag;
         public int Index;
         public UnitActions Action;

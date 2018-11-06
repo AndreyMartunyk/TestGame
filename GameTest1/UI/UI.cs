@@ -36,15 +36,15 @@ namespace GameTest1
 
         public static void Show (GameObject gameObject)
         {
-            MakeTextColor(gameObject.Color);
-            MakeBackgroundColor(gameObject.BackColor);
+            MakeTextColor(gameObject.Ui.Color);
+            MakeBackgroundColor(gameObject.Ui.BackColor);
             int k = 0;
             for (int i = gameObject.ObjArea.From.newPos.y; i <= gameObject.ObjArea.To.newPos.y; i++)
             {
                 for (int y = gameObject.ObjArea.From.newPos.x; y <= gameObject.ObjArea.To.newPos.x; y++)
                 {
                     Console.SetCursorPosition(y, i);
-                    Console.Write(gameObject.Viev[k]);
+                    Console.Write(gameObject.Ui.Viev[k]);
                     k++;
                 }
             }

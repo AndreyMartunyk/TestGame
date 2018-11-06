@@ -54,6 +54,7 @@
     <Compile Include="Coordinate.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="FpsCalculator.cs" />
+    <Compile Include="ObjUI.cs" />
     <Compile Include="UnitActions.cs" />
     <Compile Include="GameColors.cs" />
     <Compile Include="GameLog.cs" />

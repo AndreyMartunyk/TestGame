@@ -22,14 +22,14 @@ namespace GameTest1
             player.ObjArea.To.newPos.y = coordinationY;
             player.ObjArea.To.oldPos.y = coordinationY;
 
-            player.Color = GameColors.DarkGrey;
-            player.BackColor = GameColors.Yellow;
+            player.Ui.Color = GameColors.DarkGrey;
+            player.Ui.BackColor = GameColors.Yellow;
             player.Damage = 3;
             player.HP = 100;
             player.ObjName = "player";
             player.Slowness = 1;
             player.ObjTag = Tags.Player;
-            player.Viev = "(o_o)";
+            player.Ui.Viev = "(o_o)";
                            
 
             return player;
@@ -49,14 +49,14 @@ namespace GameTest1
             bBeagle.ObjArea.To.newPos.y = coordinationY;
             bBeagle.ObjArea.To.oldPos.y = coordinationY;
 
-            bBeagle.Color = GameColors.White;
-            bBeagle.BackColor = GameColors.None;
+            bBeagle.Ui.Color = GameColors.White;
+            bBeagle.Ui.BackColor = GameColors.None;
             bBeagle.Damage = 2;
             bBeagle.HP = 100;
             bBeagle.ObjName = "Blind Beagle";
             bBeagle.Slowness = 12;
             bBeagle.ObjTag = Tags.BlindBeagle;
-            bBeagle.Viev = "(\\_/)";
+            bBeagle.Ui.Viev = "(\\_/)";
 
             return bBeagle;
         }
