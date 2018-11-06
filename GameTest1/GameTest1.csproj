@@ -47,6 +47,7 @@
     <Compile Include="ActionMaker.cs" />
     <Compile Include="Area.cs" />
     <Compile Include="Brain.cs" />
+    <Compile Include="Constructors\BulletConstructor.cs" />
     <Compile Include="Constructors\CharacterConstructor.cs" />
     <Compile Include="CollisionChecker.cs" />
     <Compile Include="Controller.cs" />

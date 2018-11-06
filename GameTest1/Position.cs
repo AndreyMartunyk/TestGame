@@ -32,16 +32,16 @@ namespace GameTest1
             switch (dir)
             {
                 case Direction.Top:
-                    moovingObject.area.MoveNew(0, -countMove);
+                    moovingObject.ObjArea.MoveNew(0, -countMove);
                     break;
                 case Direction.Down:
-                    moovingObject.area.MoveNew(0, countMove);
+                    moovingObject.ObjArea.MoveNew(0, countMove);
                     break;
                 case Direction.Left:
-                    moovingObject.area.MoveNew(-countMove , 0);;
+                    moovingObject.ObjArea.MoveNew(-countMove , 0);;
                     break;
                 case Direction.Right:
-                    moovingObject.area.MoveNew(countMove, 0);
+                    moovingObject.ObjArea.MoveNew(countMove, 0);
                     break;
                 default:
                     break;     
@@ -65,8 +65,8 @@ namespace GameTest1
 
         public static void NewToOld(ref GameObject gameObject)
         {
-            NewToOld(ref gameObject.area.From);
-            NewToOld(ref gameObject.area.To);
+            NewToOld(ref gameObject.ObjArea.From);
+            NewToOld(ref gameObject.ObjArea.To);
    
         }
 
@@ -87,13 +87,13 @@ namespace GameTest1
         public static void CheckOverflow(ref GameObject gameObject, Area overflowArea)
         {
             //overflowArea переменная определяющая поле в котором МОЖЕТ находится gameObject
-            if (gameObject.area.From.newPos.x <= overflowArea.From.newPos.x 
-                || gameObject.area.To.newPos.x >= overflowArea.To.newPos.x)
+            if (gameObject.ObjArea.From.newPos.x <= overflowArea.From.newPos.x 
+                || gameObject.ObjArea.To.newPos.x >= overflowArea.To.newPos.x)
             {
                 GetBackPos(ref gameObject);
             }
-            if (gameObject.area.From.newPos.y <= overflowArea.From.newPos.y
-                || gameObject.area.To.newPos.y >= overflowArea.To.newPos.y -1)
+            if (gameObject.ObjArea.From.newPos.y <= overflowArea.From.newPos.y
+                || gameObject.ObjArea.To.newPos.y >= overflowArea.To.newPos.y -1)
             {
                 GetBackPos(ref gameObject);
             }
@@ -118,10 +118,10 @@ namespace GameTest1
 
         public static void GetBackPos (ref GameObject gameObject)
         {
-            gameObject.area.From.newPos.x = gameObject.area.From.oldPos.x;
-            gameObject.area.To.newPos.x = gameObject.area.To.oldPos.x;
-            gameObject.area.From.newPos.y = gameObject.area.From.oldPos.y;
-            gameObject.area.To.newPos.y = gameObject.area.To.oldPos.y;
+            gameObject.ObjArea.From.newPos.x = gameObject.ObjArea.From.oldPos.x;
+            gameObject.ObjArea.To.newPos.x = gameObject.ObjArea.To.oldPos.x;
+            gameObject.ObjArea.From.newPos.y = gameObject.ObjArea.From.oldPos.y;
+            gameObject.ObjArea.To.newPos.y = gameObject.ObjArea.To.oldPos.y;
         }
     }
 }

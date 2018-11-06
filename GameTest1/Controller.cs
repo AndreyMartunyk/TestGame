@@ -26,6 +26,18 @@ namespace GameTest1
                 case ConsoleKey.S:
                     action = UnitActions.MoveDown;
                     break;
+                case ConsoleKey.LeftArrow:
+                    action = UnitActions.ShootLeft;
+                    break;
+                case ConsoleKey.RightArrow:
+                    action = UnitActions.ShootRight;
+                    break;
+                case ConsoleKey.UpArrow:
+                    action = UnitActions.ShootUp;
+                    break;
+                case ConsoleKey.DownArrow:
+                    action = UnitActions.ShootDown;
+                    break;
                 default:
                     //никак не реагируем при нажатиии незадекларируемой клавиши
                     break;

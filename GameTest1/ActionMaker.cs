@@ -3,31 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace GameTest1
 {
     class ActionMaker
     {
-        public void MakeAction(ref GameRoom level, ref Brain brain, int frameTime)
+
+        //Thread thread = new Thread(Console.Beep);
+
+        public void MakeAction(ref GameRoom level, int frameTime)
         {
             for (int i = 0; i < level.countOfObjects; i++)
             {
                 if (frameTime % level.gameObj[i].Slowness == 0)
                 {
-                    MakeAction(ref level, ref level.gameObj[i], brain);
-                }
-                
+                    MakeAction(ref level, ref level.gameObj[i]);
+                }               
             }
 
-            brain.SetPlayerAction(UnitActions.None); // для того что бы действие не дублировалось снова и снова
-            
+            level.gameObj[level.FindPlayerIndex()].Action = UnitActions.None;      
         }
 
-        public void MakeAction(ref GameRoom level, ref GameObject gameObject, Brain brain)
+        public void MakeAction(ref GameRoom level, ref GameObject gameObject)
         {
-            UnitActions action = brain.MakeDecision(level, gameObject);
+           new Brain().MakeDecision(level, ref gameObject);
 
-            switch (action)
+            switch (gameObject.Action)
             {
                 case UnitActions.MoveRight:
                     PositionCl.Move(ref level, ref gameObject, Direction.Right);
@@ -43,7 +45,17 @@ namespace GameTest1
                     break;
                 case UnitActions.Stop:
                     break;
-                case UnitActions.Shoot:
+                case UnitActions.ShootLeft:
+                    Console.Beep(800, 100);
+                    break;
+                case UnitActions.ShootRight:
+                    Console.Beep(800, 50);
+                    break;
+                case UnitActions.ShootDown:
+                    Console.Beep(800, 50);
+                    break;
+                case UnitActions.ShootUp:
+                    Console.Beep();
                     break;
                 case UnitActions.Die:
                     break;

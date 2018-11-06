@@ -16,6 +16,8 @@ namespace GameTest1
         static void Main(string[] args)
         {
 
+           
+
             Settings.ConsoleSetings();
 
             ModelViev.PrintBracket();
@@ -36,8 +38,6 @@ namespace GameTest1
  
             CollisionChecker collChecker = new CollisionChecker();
             Controller controller = new Controller();
-            Brain brain = new Brain();
-            ActionMaker actionMaker = new ActionMaker();
 
             UI.Show(level_1);
 
@@ -51,13 +51,13 @@ namespace GameTest1
                 if (Console.KeyAvailable) // проверка на то, была ли нажата кнопка
                 {
                     //key = Console.ReadKey(true).Key;
-                    brain.SetPlayerAction(controller.GetActionFromKey(Console.ReadKey(true).Key));
+                    new Brain().SetPlayerDecision(level_1, controller.GetActionFromKey(Console.ReadKey(true).Key));
                 }
                 // Обработка вводных данных
                 //controller от водимого знака возвращает енам с Юзер екшн
 
 
-                actionMaker.MakeAction(ref level_1, ref  brain, frameTime);
+                new ActionMaker().MakeAction(ref level_1, frameTime);
 
 
 

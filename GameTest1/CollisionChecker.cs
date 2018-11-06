@@ -14,7 +14,7 @@ namespace GameTest1
 
             for (int i = 0; i < level.countOfObjects; i++)
             {
-                if (i == moovingObj.index) // проверка на то, не проверяем ли мы игровой обьект с самим собой
+                if (i == moovingObj.Index) // проверка на то, не проверяем ли мы игровой обьект с самим собой
                 {
                     continue;
                 }
@@ -23,23 +23,23 @@ namespace GameTest1
                 {
                     collisionEvent = GameEvents.CollisionObject;
                         
-                    if (moovingObj.teg == Tags.Player && level.gameObj[i].teg == Tags.BlindBeagle)
+                    if (moovingObj.ObjTag == Tags.Player && level.gameObj[i].ObjTag == Tags.BlindBeagle)
                     {
-                        moovingObj.HP -= level.gameObj[i].damage;
+                        moovingObj.HP -= level.gameObj[i].Damage;
                         collisionEvent = GameEvents.CollisionEnemy;
 #if DEBUG
                         GameLogger.AddLog(ref Program.log,
-                            string.Format("Player damaged from enemy on {0}", level.gameObj[i].damage));
+                            string.Format("Player damaged from enemy on {0}", level.gameObj[i].Damage));
 #endif
                     }
-                    else if (moovingObj.teg == Tags.BlindBeagle && level.gameObj[i].teg == Tags.Player)
+                    else if (moovingObj.ObjTag == Tags.BlindBeagle && level.gameObj[i].ObjTag == Tags.Player)
                     {
-                        moovingObj.HP -= level.gameObj[i].damage;
+                        moovingObj.HP -= level.gameObj[i].Damage;
                         collisionEvent = GameEvents.CollisionEnemy;
 
 #if DEBUG
                         GameLogger.AddLog(ref Program.log,
-                            string.Format("Enemy attack player on {0}", level.gameObj[i].damage));
+                            string.Format("Enemy attack player on {0}", level.gameObj[i].Damage));
 #endif
                     }
 
@@ -66,8 +66,8 @@ namespace GameTest1
 
             //return isChange;
 
-            return !((gameObj.area.From.newPos.x == gameObj.area.From.oldPos.x
-                && gameObj.area.From.newPos.y == gameObj.area.From.oldPos.y));
+            return !((gameObj.ObjArea.From.newPos.x == gameObj.ObjArea.From.oldPos.x
+                && gameObj.ObjArea.From.newPos.y == gameObj.ObjArea.From.oldPos.y));
         }
 
         private bool IsFaceOnBack(GameObject objFace, GameObject objBack)
@@ -129,19 +129,19 @@ namespace GameTest1
         {
             Direction dir = Direction.None;
 
-            if (gameObj.area.From.newPos.x > gameObj.area.From.oldPos.x)
+            if (gameObj.ObjArea.From.newPos.x > gameObj.ObjArea.From.oldPos.x)
             {
                 dir = Direction.Right;
             }
-            else if (gameObj.area.From.newPos.x < gameObj.area.From.oldPos.x)
+            else if (gameObj.ObjArea.From.newPos.x < gameObj.ObjArea.From.oldPos.x)
             {
                 dir = Direction.Left;
             }
-            else if (gameObj.area.From.newPos.y > gameObj.area.From.oldPos.y)
+            else if (gameObj.ObjArea.From.newPos.y > gameObj.ObjArea.From.oldPos.y)
             {
                 dir = Direction.Down;
             }
-            else if (gameObj.area.From.newPos.y < gameObj.area.From.oldPos.y)
+            else if (gameObj.ObjArea.From.newPos.y < gameObj.ObjArea.From.oldPos.y)
             {
                 dir = Direction.Top;
             }
@@ -156,31 +156,31 @@ namespace GameTest1
             switch (dir)
             {
                 case Direction.Top:
-                    side = new Coordinate[gameObj.area.To.newPos.x - gameObj.area.From.newPos.x + 1];
+                    side = new Coordinate[gameObj.ObjArea.To.newPos.x - gameObj.ObjArea.From.newPos.x + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new Coordinate { y = gameObj.area.From.newPos.y, x = gameObj.area.From.newPos.x + i };
+                        side[i] = new Coordinate { y = gameObj.ObjArea.From.newPos.y, x = gameObj.ObjArea.From.newPos.x + i };
                     }
                 break;
                 case Direction.Down:
-                    side = new Coordinate[gameObj.area.To.newPos.x - gameObj.area.From.newPos.x + 1];
+                    side = new Coordinate[gameObj.ObjArea.To.newPos.x - gameObj.ObjArea.From.newPos.x + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new Coordinate { y = gameObj.area.To.newPos.y, x = gameObj.area.From.newPos.x + i };
+                        side[i] = new Coordinate { y = gameObj.ObjArea.To.newPos.y, x = gameObj.ObjArea.From.newPos.x + i };
                     }
                     break;
                 case Direction.Left:
-                    side = new Coordinate[gameObj.area.To.newPos.y - gameObj.area.From.newPos.y + 1];
+                    side = new Coordinate[gameObj.ObjArea.To.newPos.y - gameObj.ObjArea.From.newPos.y + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new Coordinate { y = gameObj.area.From.newPos.y + i, x = gameObj.area.From.newPos.x};
+                        side[i] = new Coordinate { y = gameObj.ObjArea.From.newPos.y + i, x = gameObj.ObjArea.From.newPos.x};
                     }
                     break;
                 case Direction.Right:
-                    side = new Coordinate[gameObj.area.To.newPos.y - gameObj.area.From.newPos.y + 1];
+                    side = new Coordinate[gameObj.ObjArea.To.newPos.y - gameObj.ObjArea.From.newPos.y + 1];
                     for (int i = 0; i < side.Length; i++)
                     {
-                        side[i] = new Coordinate { y = gameObj.area.From.newPos.y + i, x = gameObj.area.To.newPos.x };
+                        side[i] = new Coordinate { y = gameObj.ObjArea.From.newPos.y + i, x = gameObj.ObjArea.To.newPos.x };
                     }
                     break;
                 default:

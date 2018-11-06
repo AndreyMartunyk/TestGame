@@ -13,6 +13,7 @@ namespace GameTest1
         DamageToucher,  // при прикосновении игроку наносится урон
         Stone,      // предмет к которому невозможно прикоснутся, т.е. обычная преграда
         BlindBeagle,
+        Bullet,
 
         Zone
     }

@@ -49,21 +49,21 @@ namespace GameTest1
         public GameObject GetDoorZone(Direction dir)
         {
             GameObject doorZone = new GameObject();
-            doorZone.teg = Tags.Zone;
+            doorZone.ObjTag = Tags.Zone;
 
             switch (dir)
             {
                 case Direction.Top:
-                    doorZone.area = new Area().SetArea(40, 0, 2, 10);
+                    doorZone.ObjArea = new Area().SetArea(40, 0, 2, 10);
                     break;
                 case Direction.Down:
-                    doorZone.area = new Area().SetArea(50, 38, 2, 10);
+                    doorZone.ObjArea = new Area().SetArea(50, 38, 2, 10);
                     break;
                 case Direction.Left:
-                    doorZone.area = new Area().SetArea(0, 15, 5, 2);
+                    doorZone.ObjArea = new Area().SetArea(0, 15, 5, 2);
                     break;
                 case Direction.Right:
-                    doorZone.area = new Area().SetArea(78, 20, 5, 2);
+                    doorZone.ObjArea = new Area().SetArea(78, 20, 5, 2);
                     break;
                 default:
                 case Direction.None:

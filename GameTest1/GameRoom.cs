@@ -22,7 +22,7 @@ namespace GameTest1
 
         public void AddGameObject(GameObject addingObject)
         {
-            addingObject.index = countOfObjects;
+            addingObject.Index = countOfObjects;
             gameObj[countOfObjects] = addingObject;
             ++countOfObjects;
         }
@@ -34,6 +34,22 @@ namespace GameTest1
             {
                 AddGameObject(map.LandScape[i]);
             }       
+        }
+
+        public int FindPlayerIndex()
+        {
+            // войвращает номер индекса игрока, если его нет то возвр. -1
+            int playerIndex = -1;
+            for (int i = 0; i < countOfObjects; i++)
+            {
+                if (gameObj[i].ObjTag == Tags.Player)
+                {
+                    playerIndex = i;
+                    break;
+                }
+            }
+
+            return playerIndex;
         }
     }
 

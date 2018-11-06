@@ -8,93 +8,26 @@ namespace GameTest1
 {
     public struct GameObject
     {
-
+        //меняем гем обдж - Все что касается вншнего вида - отдельно, и добавляем обджЕкшен и меняем логику соответственно
         // TODO all fields to Camel case
-        public string objName;
-        public Area area;
-        public GameColors color;
-        public GameColors backColor;
+        public string ObjName;
+        public Area ObjArea;
+        public GameColors Color;
+        public GameColors BackColor;
         public float Slowness;
         public int HP;
-        public int damage;
-        public string viev;
-        public Tags teg;
-        public int index;
+        public int Damage;
+        public string Viev;
+        public Tags ObjTag;
+        public int Index;
+        public UnitActions Action;
+
+
+        public void Shoot (GameRoom room, Direction dir)
+        {
+
+        }
 
     }
-
-    //public class GameObjectInit
-    //{
-
-    //    private static GameObject CreateEmptyGameObject()
-    //    {
-
-    //        GameObject gameObject = new GameObject
-    //        {
-    //            name = "name",
-    //            color = 0,
-    //            speed = 0,
-    //            HP = 0,
-    //            damage = 0,
-    //            viev = SViews.SHARP,
-    //            teg = Tags.None,
-    //            area = new Area
-    //            {
-    //                From = new Position
-    //                {
-    //                    newPos = new Coordinate { x = 0, y = 0 },
-    //                    oldPos = new Coordinate { x = 0, y = 0 },
-    //                },
-    //                To = new Position
-    //                {
-    //                    newPos = new Coordinate { x = 0, y = 0 },
-    //                    oldPos = new Coordinate { x = 0, y = 0 },
-    //                }
-    //            }
-    //        };
-    //        return gameObject;
-    //    }
-
-    //    public static GameObject CreateGameObject(Position from, Position to)
-    //    {
-    //        GameObject gameObject = CreateEmptyGameObject();
-    //        gameObject.area.From = from;
-    //        gameObject.area.To = to;
-
-    //        return gameObject;
-    //    }
-
-    //    public static GameObject CreateGameObject(Area ar)
-    //    {
-    //        GameObject gameObject = CreateEmptyGameObject();
-    //        gameObject.area = ar;
-
-    //        return gameObject;
-    //    }
-
-    //    public static GameObject CreateGameObject(Area ar, string viev)
-    //    {
-    //        GameObject gameObject = CreateEmptyGameObject();
-    //        gameObject.area = ar;
-    //        gameObject.viev = viev;
-    //        return gameObject;
-    //    }
-
-    //    //public static GameObject CreateGameObject(Position from, Position to, string viev, Tegs nameOfTeg)
-    //    //{
-    //    //    GameObject gameObject = CreateGameObject(new Area, viev);
-    //    //    gameObject.teg = nameOfTeg;
-    //    //    return gameObject;
-    //    //}
-
-    //    public static GameObject CreateGameObject(Area ar, string viev, Tags nameOfTeg)
-    //    {
-    //        GameObject gameObject = CreateGameObject(ar, viev);
-    //        gameObject.teg = nameOfTeg;
-    //        return gameObject;
-    //    }
-
-
-    //}
 
 }

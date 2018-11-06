@@ -8,25 +8,30 @@ namespace GameTest1
 {
     public struct Brain
     {
-        private UnitActions playerAction;
 
-
-        
-
-        public void SetPlayerAction(UnitActions action)
+        public void SetPlayerDecision(GameRoom level, UnitActions action)
         {
-            playerAction = action;
+            level.gameObj[level.FindPlayerIndex()].Action = action;
         }
 
-        public UnitActions MakeDecision(GameRoom level,GameObject thinkingObject)
+        public void MakeDecision(ref GameRoom level, Direction dir = Direction.None)
+        {
+            for (int i = 0; i < level.countOfObjects; i++)
+            {
+                MakeDecision(level, ref level.gameObj[i], dir);
+            }
+        }
+
+
+        public void MakeDecision(GameRoom level, ref GameObject thinkingObject, Direction dir = Direction.None)
         {
             UnitActions action = UnitActions.None;
 
-            switch (thinkingObject.teg)
+            switch (thinkingObject.ObjTag)
             {
 
                 case Tags.Player:
-                    action = playerAction;
+                    action = thinkingObject.Action;
                     break;
                 case Tags.DamageToucher:
                 case Tags.Stone:
@@ -34,6 +39,9 @@ namespace GameTest1
                     break;
                 case Tags.BlindBeagle:
                     action = BlindBeagle(level, thinkingObject);
+                    break;
+                case Tags.Bullet:
+                    action = Bullet(thinkingObject, dir);
                     break;
                 case Tags.Zone:
                     break;
@@ -43,17 +51,43 @@ namespace GameTest1
                     break;
             }
 
+            thinkingObject.Action = action;
+        }
 
+        private UnitActions Bullet (GameObject bullet, Direction dir)
+        {
+            UnitActions bulletAction = UnitActions.None;
 
-            return action;
+            switch (dir)
+            {
+                case Direction.None:
+                    break;
+                case Direction.Top:
+                    bulletAction = UnitActions.MoveTop;
+                    break;
+                case Direction.Down:
+                    bulletAction = UnitActions.MoveDown;
+                    break;
+                case Direction.Left:
+                    bulletAction = UnitActions.MoveLeft;
+                    break;
+                case Direction.Right:
+                    bulletAction = UnitActions.MoveRight;
+                    break;
+                default:
+                    break;
+            }
+
+            return bulletAction;
+
         }
 
         private UnitActions BlindBeagle (GameRoom level, GameObject beagle)
         {
             UnitActions beagleAction = UnitActions.None;
-            int playerIndex = FindPlayerIndex(level);
-            Coordinate playerCenter = level.gameObj[playerIndex].area.GetCenter();
-            Coordinate beagleCenter = beagle.area.GetCenter();
+            int playerIndex = level.FindPlayerIndex();
+            Coordinate playerCenter = level.gameObj[playerIndex].ObjArea.GetCenter();
+            Coordinate beagleCenter = beagle.ObjArea.GetCenter();
 
             int absX = Math.Abs(playerCenter.x - beagleCenter.x);
             int absY = Math.Abs(playerCenter.y - beagleCenter.y);
@@ -84,21 +118,7 @@ namespace GameTest1
             return beagleAction;
         }
 
-        private int FindPlayerIndex (GameRoom level)
-        {
-            // войвращает номер индекса игрока, если его нет то возвр. -1
-            int playerIndex = -1;
-            for (int i = 0; i < level.countOfObjects; i++)
-            {              
-                if (level.gameObj[i].teg == Tags.Player)
-                {
-                    playerIndex = i;
-                    break;
-                }
-            }
-
-            return playerIndex;
-        }
+        
 
     }
 }

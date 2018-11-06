@@ -14,7 +14,10 @@ namespace GameTest1
         MoveDown,
         MoveTop,
         Stop,
-        Shoot,
+        ShootLeft,
+        ShootRight,
+        ShootDown,
+        ShootUp,
         Die,
         GetDamage,
         Attack

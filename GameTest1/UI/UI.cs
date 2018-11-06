@@ -26,8 +26,8 @@ namespace GameTest1
 
         public static void Refresh (GameObject gameObject)
         {
-            if (gameObject.area.From.newPos.x != gameObject.area.From.oldPos.x ||
-                gameObject.area.From.newPos.y != gameObject.area.From.oldPos.y)
+            if (gameObject.ObjArea.From.newPos.x != gameObject.ObjArea.From.oldPos.x ||
+                gameObject.ObjArea.From.newPos.y != gameObject.ObjArea.From.oldPos.y)
             {
                 Hide(gameObject);
                 Show(gameObject);
@@ -36,15 +36,15 @@ namespace GameTest1
 
         public static void Show (GameObject gameObject)
         {
-            MakeTextColor(gameObject.color);
-            MakeBackgroundColor(gameObject.backColor);
+            MakeTextColor(gameObject.Color);
+            MakeBackgroundColor(gameObject.BackColor);
             int k = 0;
-            for (int i = gameObject.area.From.newPos.y; i <= gameObject.area.To.newPos.y; i++)
+            for (int i = gameObject.ObjArea.From.newPos.y; i <= gameObject.ObjArea.To.newPos.y; i++)
             {
-                for (int y = gameObject.area.From.newPos.x; y <= gameObject.area.To.newPos.x; y++)
+                for (int y = gameObject.ObjArea.From.newPos.x; y <= gameObject.ObjArea.To.newPos.x; y++)
                 {
                     Console.SetCursorPosition(y, i);
-                    Console.Write(gameObject.viev[k]);
+                    Console.Write(gameObject.Viev[k]);
                     k++;
                 }
             }
@@ -54,9 +54,9 @@ namespace GameTest1
 
         public static void Hide(GameObject gameObject)
         {
-            for (int i = gameObject.area.From.oldPos.y; i <= gameObject.area.To.oldPos.y; i++)
+            for (int i = gameObject.ObjArea.From.oldPos.y; i <= gameObject.ObjArea.To.oldPos.y; i++)
             {
-                for (int y = gameObject.area.From.oldPos.x; y <= gameObject.area.To.oldPos.x; y++)
+                for (int y = gameObject.ObjArea.From.oldPos.x; y <= gameObject.ObjArea.To.oldPos.x; y++)
                 {
                     Console.SetCursorPosition(y, i);
                     Console.Write(" ");
