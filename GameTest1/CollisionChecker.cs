@@ -8,7 +8,31 @@ namespace GameTest1
 {
     class CollisionChecker
     {
-        public GameEvents CheckCollision(ref GameRoom level, GameObject moovingObj)
+
+        //написать отдельный метод для пули.
+
+        public void RespondToCollision(ref GameRoom level, ref GameObject moovingObj)
+        {
+            //if (moovingObj.ObjTag == Tags.Bullet)
+            //{
+
+            //}
+            //else 
+            if (CheckCollision(ref level, ref moovingObj) != GameEvents.NoneEvent)
+            {
+                PositionCl.GetBackPos(ref moovingObj);
+            }
+        }
+
+        
+
+        private bool IsSmall (GameObject moovingObj)
+        {
+            return ((moovingObj.ObjArea.To.newPos.x - moovingObj.ObjArea.From.newPos.x == 1) &&
+                (moovingObj.ObjArea.To.newPos.y - moovingObj.ObjArea.From.newPos.y == 1));
+        }
+
+        public GameEvents CheckCollision(ref GameRoom level, ref GameObject moovingObj)
         {
             GameEvents collisionEvent = GameEvents.NoneEvent;
 
@@ -34,7 +58,7 @@ namespace GameTest1
                     }
                     else if (moovingObj.ObjTag == Tags.BlindBeagle && level.gameObj[i].ObjTag == Tags.Player)
                     {
-                        moovingObj.HP -= level.gameObj[i].Damage;
+                        level.gameObj[i].HP -= moovingObj.Damage;
                         collisionEvent = GameEvents.CollisionEnemy;
 
 #if DEBUG
@@ -77,10 +101,13 @@ namespace GameTest1
 
             Direction faceDir;
             Direction backDir;
-            FindFaceAndBack(objFace, out faceDir, out backDir);
 
-            Coordinate[] facePos = GetSide(objFace, faceDir);
-            Coordinate[] backPos = GetSide(objBack, backDir);
+            Coordinate[] facePos;
+            Coordinate[] backPos;
+
+            FindFaceAndBack(objFace, out faceDir, out backDir);
+            facePos = GetSide(objFace, faceDir);
+            backPos = GetSide(objBack, backDir);
 
             for (int i = 0; i < facePos.Length; i++)
             {
@@ -99,6 +126,7 @@ namespace GameTest1
 
         private void FindFaceAndBack(GameObject objFace, out Direction face, out Direction back)
         {
+
             face = FindMoveDirection(objFace);
             back = Direction.None;
 
@@ -119,7 +147,7 @@ namespace GameTest1
                 default:
                 case Direction.None:
 #if DEBUG
-                    GameLogger.AddLog(ref Program.log, "В методе поиска направления обьекта ничего не нашло");
+                   // GameLogger.AddLog(ref Program.log, "В методе поиска на");
 #endif
                     break;
             }
@@ -186,8 +214,9 @@ namespace GameTest1
                 default:
                 case Direction.None:
                     side = new Coordinate[0];
+                    //side[0] = new Coordinate { x = gameObj.ObjArea.From.newPos.x, y = gameObj.ObjArea.From.newPos.y };
 #if DEBUG
-                    GameLogger.AddLog(ref Program.log, "In Function CollisionChecker.GetSide switch get none or default");
+                   //GameLogger.AddLog(ref Program.log, "In Function CollisionCh");
 #endif
                 break;
 

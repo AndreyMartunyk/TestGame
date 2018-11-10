@@ -37,6 +37,7 @@ namespace GameTest1
             return ar;
         }
 
+
         public void MoveNew (int x, int y)
         {
             From.newPos.x += x * 2;

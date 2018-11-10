@@ -46,16 +46,20 @@ namespace GameTest1
                 case UnitActions.Stop:
                     break;
                 case UnitActions.ShootLeft:
-                    Console.Beep(800, 100);
+                    Console.Beep(800, 50);
+                    gameObject.Shoot(ref level, Direction.Left);
                     break;
                 case UnitActions.ShootRight:
+                    gameObject.Shoot(ref level,Direction.Right);
                     Console.Beep(800, 50);
                     break;
                 case UnitActions.ShootDown:
+                    gameObject.Shoot(ref level, Direction.Down);
                     Console.Beep(800, 50);
                     break;
                 case UnitActions.ShootUp:
-                    Console.Beep();
+                    gameObject.Shoot(ref level, Direction.Top);
+                    Console.Beep(800, 50);
                     break;
                 case UnitActions.Die:
                     break;

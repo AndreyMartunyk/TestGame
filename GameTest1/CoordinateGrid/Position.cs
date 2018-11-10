@@ -47,11 +47,14 @@ namespace GameTest1
                     break;     
             }
 
-            CollisionChecker collChecker = new CollisionChecker();
-            if (collChecker.CheckCollision(ref level, moovingObject) != GameEvents.NoneEvent)
-            {
-                PositionCl.GetBackPos(ref moovingObject);
-            }
+            new CollisionChecker().RespondToCollision(ref level, ref moovingObject);
+
+            //CollisionChecker collChecker = new CollisionChecker();
+
+            //if (collChecker.CheckCollision(ref level, moovingObject) != GameEvents.NoneEvent)
+            //{
+            //    PositionCl.GetBackPos(ref moovingObject);
+            //}
 
         }
 

@@ -36,6 +36,15 @@ namespace GameTest1
 
             }
 
+            for (int i = Settings.GetGameArea().To.newPos.x - 1; i < Settings.Width; i++)
+            {
+                Console.SetCursorPosition(i, 4);
+                Console.Write(" ");
+            }
+
+            Console.SetCursorPosition(Settings.GetGameArea().To.newPos.x + 3, 6);
+            Console.Write(" ");
+
             Console.ResetColor();
 
 #if DEBUG

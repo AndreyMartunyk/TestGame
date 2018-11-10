@@ -8,7 +8,8 @@ namespace GameTest1
 {
     class MyConst
     {
-        public const int CONSOLE_HEIGHT = 0; 
-        public const int CONSOLE_HEIGH = 0; 
+        public const int STEP_X = 2; 
+        public const int STEP_Y = 1; 
+
     }
 }

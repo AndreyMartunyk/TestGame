@@ -25,7 +25,7 @@ namespace GameTest1
             player.Ui.Color = GameColors.DarkGrey;
             player.Ui.BackColor = GameColors.Yellow;
             player.Damage = 3;
-            player.HP = 100;
+            player.HP = 1000;
             player.ObjName = "player";
             player.Slowness = 1;
             player.ObjTag = Tags.Player;

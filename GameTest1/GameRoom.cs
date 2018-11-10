@@ -11,19 +11,20 @@ namespace GameTest1
         public GameObject[] gameObj;
         public int countOfObjects;
         private GameMap map;
+        const int DEFAULT_ARRAY_LENGTH = 500;
         //current obj?????
 
-        public void CreateLevelStorage(int arrayLength = 100) // arrayLength - размер массива GameObject[]
+        public void CreateLevelStorage() // arrayLength - размер массива GameObject[]
         {
 
-            gameObj = new GameObject[arrayLength];
+            gameObj = new GameObject[DEFAULT_ARRAY_LENGTH];
             countOfObjects = 0;
         }
 
         public void AddGameObject(GameObject addingObject)
         {
-            addingObject.Index = countOfObjects;
             gameObj[countOfObjects] = addingObject;
+            gameObj[countOfObjects].Index = countOfObjects;
             ++countOfObjects;
         }
 

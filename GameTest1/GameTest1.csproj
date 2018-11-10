@@ -51,12 +51,12 @@
     <Compile Include="Constructors\CharacterConstructor.cs" />
     <Compile Include="CollisionChecker.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="Coordinate.cs" />
+    <Compile Include="CoordinateGrid\Coordinate.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="FpsCalculator.cs" />
-    <Compile Include="ObjUI.cs" />
+    <Compile Include="UI\ObjUI.cs" />
     <Compile Include="UnitActions.cs" />
-    <Compile Include="GameColors.cs" />
+    <Compile Include="UI\GameColors.cs" />
     <Compile Include="GameLog.cs" />
     <Compile Include="GameMap.cs" />
     <Compile Include="GameRoom.cs" />
@@ -65,11 +65,11 @@
     <Compile Include="Settings.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="MyConst.cs" />
-    <Compile Include="SViews.cs" />
+    <Compile Include="UI\SViews.cs" />
     <Compile Include="Tags.cs" />
     <Compile Include="UI\ModelViev.cs" />
     <Compile Include="UI\UI.cs" />
-    <Compile Include="Position.cs" />
+    <Compile Include="CoordinateGrid\Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,7 +78,7 @@
     <Compile Include="Direction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TypesOfGameObjects.txt" />
+    <Content Include="Info\TypesOfGameObjects.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

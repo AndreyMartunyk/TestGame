@@ -61,6 +61,7 @@ namespace GameTest1
             switch (dir)
             {
                 case Direction.None:
+                    bulletAction = bullet.Action;
                     break;
                 case Direction.Top:
                     bulletAction = UnitActions.MoveTop;

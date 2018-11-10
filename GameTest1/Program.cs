@@ -81,6 +81,9 @@ namespace GameTest1
 #endif
                 UI.ShowFPS(fps.EndOfFrame(out int countOfFrames), countOfFrames);
 
+                Console.SetCursorPosition(Settings.GetGameArea().To.newPos.x + 5, 6);
+                Console.Write("HP = {0}   ", level_1.gameObj[0].HP);
+
                 ++frameTime;
             } while (true);  
         }
