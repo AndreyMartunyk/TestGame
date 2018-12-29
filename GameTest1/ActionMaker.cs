@@ -12,66 +12,87 @@ namespace GameTest1
 
         //Thread thread = new Thread(Console.Beep);
 
-        public void MakeAction(ref GameRoom level, int frameTime)
+        public void MakeВeliberateAction(ref GameRoom level, int frameTime)
         {
-            for (int i = 0; i < level.countOfObjects; i++)
+            for (int i = 0; i <= level.lastObjectIndex; i++)
             {
-                if (frameTime % level.gameObj[i].Slowness == 0)
+                if (level.gameObj[i].IsActive)
                 {
-                    MakeAction(ref level, ref level.gameObj[i]);
-                }               
+                    if (frameTime % level.gameObj[i].Slowness == 0)
+                    {
+                        MakeВeliberateAction(ref level, ref level.gameObj[i]);
+                    }
+                }
             }
 
             level.gameObj[level.FindPlayerIndex()].Action = UnitActions.None;      
         }
 
-        public void MakeAction(ref GameRoom level, ref GameObject gameObject)
+        public void MakeВeliberateAction(ref GameRoom level, ref GameObject gameObject)
         {
            new Brain().MakeDecision(level, ref gameObject);
 
-            switch (gameObject.Action)
-            {
-                case UnitActions.MoveRight:
-                    PositionCl.Move(ref level, ref gameObject, Direction.Right);
-                    break;
-                case UnitActions.MoveLeft:
-                    PositionCl.Move(ref level, ref gameObject, Direction.Left);
-                    break;
-                case UnitActions.MoveDown:
-                    PositionCl.Move(ref level, ref gameObject, Direction.Down);
-                    break;
-                case UnitActions.MoveTop:
-                    PositionCl.Move(ref level, ref gameObject, Direction.Top);
-                    break;
-                case UnitActions.Stop:
-                    break;
-                case UnitActions.ShootLeft:
-                    Console.Beep(800, 50);
-                    gameObject.Shoot(ref level, Direction.Left);
-                    break;
-                case UnitActions.ShootRight:
-                    gameObject.Shoot(ref level,Direction.Right);
-                    Console.Beep(800, 50);
-                    break;
-                case UnitActions.ShootDown:
-                    gameObject.Shoot(ref level, Direction.Down);
-                    Console.Beep(800, 50);
-                    break;
-                case UnitActions.ShootUp:
-                    gameObject.Shoot(ref level, Direction.Top);
-                    Console.Beep(800, 50);
-                    break;
-                case UnitActions.Die:
-                    break;
-                case UnitActions.GetDamage:
-                    break;
-                case UnitActions.Attack:
-                    break;
-                default:
-                case UnitActions.None:
+            MakeAction(ref level, ref gameObject);
+        }
 
-                    break;
+        public void MakeAction(ref GameRoom level, ref GameObject gameObject)
+        {
+            if (gameObject.IsActive)
+            {
+                switch (gameObject.Action)
+                {
+                    case UnitActions.MoveRight:
+                        PositionCl.Move(ref level, ref gameObject, Direction.Right);
+                        break;
+                    case UnitActions.MoveLeft:
+                        PositionCl.Move(ref level, ref gameObject, Direction.Left);
+                        break;
+                    case UnitActions.MoveDown:
+                        PositionCl.Move(ref level, ref gameObject, Direction.Down);
+                        break;
+                    case UnitActions.MoveTop:
+                        PositionCl.Move(ref level, ref gameObject, Direction.Top);
+                        break;
+                    case UnitActions.Stop:
+                        break;
+                    case UnitActions.ShootLeft:
+                        Console.Beep(800, 50);
+                        gameObject.Shoot(ref level, Direction.Left);
+                        break;
+                    case UnitActions.ShootRight:
+                        gameObject.Shoot(ref level, Direction.Right);
+                        Console.Beep(800, 50);
+                        break;
+                    case UnitActions.ShootDown:
+                        gameObject.Shoot(ref level, Direction.Down);
+                        Console.Beep(800, 50);
+                        break;
+                    case UnitActions.ShootUp:
+                        gameObject.Shoot(ref level, Direction.Top);
+                        Console.Beep(800, 50);
+                        break;
+                    case UnitActions.Die:
+                        Die(ref level, gameObject);
+                        break;
+                    case UnitActions.GetDamage:
+                        break;
+                    case UnitActions.Attack:
+                        break;
+                    default:
+                    case UnitActions.None:
+
+                        break;
+                }
             }
+
+        }
+
+
+            public void Die (ref GameRoom room, GameObject dyingObj)
+        {
+            room.DeleteGameObject(dyingObj);
+            UI.Hide(room.gameObj[dyingObj.Index]);
+            
 
         }
     }

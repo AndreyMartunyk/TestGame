@@ -19,14 +19,16 @@ namespace GameTest1
         public Tags ObjTag;
         public int Index;
         public UnitActions Action;
+        public bool IsActive;
 
+        #region Shooting
 
         public void Shoot (ref GameRoom level, Direction dir)
         {
 
             GameObject bullet = CreateBullet(dir);
             level.AddGameObject(bullet);
-            new CollisionChecker().RespondToCollision(ref level, ref bullet);
+            //new CollisionChecker().RespondToCollision(ref level, ref bullet);
 
 
             //проверить где появилась пуля, если на месте  другого обьекта, то уничтожиться нанести урон 
@@ -121,6 +123,10 @@ namespace GameTest1
 
             return bullet;
         }
+
+        #endregion
+
+
     }
 
 }

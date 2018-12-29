@@ -9,74 +9,52 @@ namespace GameTest1
     class CollisionChecker
     {
 
-        //написать отдельный метод для пули.
 
-        public void RespondToCollision(ref GameRoom level, ref GameObject moovingObj)
+        public bool CheckCollision(GameRoom level, GameObject moovingObj, out int collisionIndex)
         {
-            //if (moovingObj.ObjTag == Tags.Bullet)
-            //{
+            // возвращает булевое значение которое указывает было ли столкновение
+            // и Out-ит индекс обьекта с которым и было непосредственное столкновение 
 
-            //}
-            //else 
-            if (CheckCollision(ref level, ref moovingObj) != GameEvents.NoneEvent)
+            bool isFaced = false;
+            collisionIndex = 0;
+
+            for (int i = 0; i <= level.lastObjectIndex; i++)
             {
-                PositionCl.GetBackPos(ref moovingObj);
-            }
-        }
-
-        
-
-        private bool IsSmall (GameObject moovingObj)
-        {
-            return ((moovingObj.ObjArea.To.newPos.x - moovingObj.ObjArea.From.newPos.x == 1) &&
-                (moovingObj.ObjArea.To.newPos.y - moovingObj.ObjArea.From.newPos.y == 1));
-        }
-
-        public GameEvents CheckCollision(ref GameRoom level, ref GameObject moovingObj)
-        {
-            GameEvents collisionEvent = GameEvents.NoneEvent;
-
-            for (int i = 0; i < level.countOfObjects; i++)
-            {
-                if (i == moovingObj.Index) // проверка на то, не проверяем ли мы игровой обьект с самим собой
+                if (moovingObj.IsActive && level.gameObj[i].IsActive)
                 {
-                    continue;
-                }
-
-                if (IsFaceOnBack(moovingObj, level.gameObj[i]))
-                {
-                    collisionEvent = GameEvents.CollisionObject;
-                        
-                    if (moovingObj.ObjTag == Tags.Player && level.gameObj[i].ObjTag == Tags.BlindBeagle)
+                    if (i == moovingObj.Index) // проверка на то, не проверяем ли мы игровой обьект с самим собой
                     {
-                        moovingObj.HP -= level.gameObj[i].Damage;
-                        collisionEvent = GameEvents.CollisionEnemy;
-#if DEBUG
-                        GameLogger.AddLog(ref Program.log,
-                            string.Format("Player damaged from enemy on {0}", level.gameObj[i].Damage));
-#endif
-                    }
-                    else if (moovingObj.ObjTag == Tags.BlindBeagle && level.gameObj[i].ObjTag == Tags.Player)
-                    {
-                        level.gameObj[i].HP -= moovingObj.Damage;
-                        collisionEvent = GameEvents.CollisionEnemy;
-
-#if DEBUG
-                        GameLogger.AddLog(ref Program.log,
-                            string.Format("Enemy attack player on {0}", level.gameObj[i].Damage));
-#endif
+                        continue;
                     }
 
+                    if (IsFaced(moovingObj, level.gameObj[i]))
+                    {
 
-
-                    //PositionCl.GetBackPos(ref moovingObj);
-                    break;
+                        collisionIndex = i;
+                        isFaced = true;
+                        break;
+                    }
                 }
             }
 
 
-            return collisionEvent;
+            return isFaced;
         }
+
+        //private bool IsFaced (GameObject moovingObg, GameObject checkingObg)
+        //{
+        //    //возвращает булевую переменную указывающую произошло ли столкновение двух игровых обьектов
+        //    bool isFaced = false;
+
+        //    if (IsFaceOnBack(moovingObg, checkingObg))
+        //    {
+        //        isFaced = true;
+        //    }
+
+        //    isFaced = false;
+
+        //    return isFaced;
+        //}
 
         private bool IsChangedPos(GameObject gameObj)
         {
@@ -94,7 +72,9 @@ namespace GameTest1
                 && gameObj.ObjArea.From.newPos.y == gameObj.ObjArea.From.oldPos.y));
         }
 
-        private bool IsFaceOnBack(GameObject objFace, GameObject objBack)
+        #region BlackMagicRegion
+
+        private bool IsFaced(GameObject objFace, GameObject objBack)
         {
             //возвращает true если "передняя" часть обьекта находится на той же что и "спина" другого обьекта 
             bool isFaced = false;
@@ -224,6 +204,8 @@ namespace GameTest1
 
             return side;
         }
+
+        #endregion
 
     }
 }

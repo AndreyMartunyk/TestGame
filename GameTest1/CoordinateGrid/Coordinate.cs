@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace GameTest1
 {
     public struct Coordinate
-
     {
         public int x;
         public int y;

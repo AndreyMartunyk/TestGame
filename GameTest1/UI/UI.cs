@@ -10,7 +10,7 @@ namespace GameTest1
     {
         public static void Refresh (GameRoom level)
         {
-            for (int i = 0; i < level.countOfObjects; i++)
+            for (int i = 0; i <= level.lastObjectIndex; i++)
             {
                 Refresh(level.gameObj[i]);
             }
@@ -18,7 +18,7 @@ namespace GameTest1
 
         public static void Show(GameRoom level)
         {
-            for (int i = 0; i < level.countOfObjects; i++)
+            for (int i = 0; i <= level.lastObjectIndex; i++)
             {
                 Show(level.gameObj[i]);
             }
@@ -27,7 +27,8 @@ namespace GameTest1
         public static void Refresh (GameObject gameObject)
         {
             if (gameObject.ObjArea.From.newPos.x != gameObject.ObjArea.From.oldPos.x ||
-                gameObject.ObjArea.From.newPos.y != gameObject.ObjArea.From.oldPos.y)
+                gameObject.ObjArea.From.newPos.y != gameObject.ObjArea.From.oldPos.y ||
+                gameObject.ObjTag == Tags.Bullet)
             {
                 Hide(gameObject);
                 Show(gameObject);
@@ -36,20 +37,23 @@ namespace GameTest1
 
         public static void Show (GameObject gameObject)
         {
-            MakeTextColor(gameObject.Ui.Color);
-            MakeBackgroundColor(gameObject.Ui.BackColor);
-            int k = 0;
-            for (int i = gameObject.ObjArea.From.newPos.y; i <= gameObject.ObjArea.To.newPos.y; i++)
+            if (gameObject.IsActive)
             {
-                for (int y = gameObject.ObjArea.From.newPos.x; y <= gameObject.ObjArea.To.newPos.x; y++)
+                MakeTextColor(gameObject.Ui.Color);
+                MakeBackgroundColor(gameObject.Ui.BackColor);
+                int k = 0;
+                for (int i = gameObject.ObjArea.From.newPos.y; i <= gameObject.ObjArea.To.newPos.y; i++)
                 {
-                    Console.SetCursorPosition(y, i);
-                    Console.Write(gameObject.Ui.Viev[k]);
-                    k++;
+                    for (int y = gameObject.ObjArea.From.newPos.x; y <= gameObject.ObjArea.To.newPos.x; y++)
+                    {
+                        Console.SetCursorPosition(y, i);
+                        Console.Write(gameObject.Ui.Viev[k]);
+                        k++;
+                    }
                 }
+                ReturnDefaultColor();
+                ReturnDefaultBackgroundColor();
             }
-            ReturnDefaultColor();
-            ReturnDefaultBackgroundColor();
         } 
 
         public static void Hide(GameObject gameObject)

@@ -9,23 +9,39 @@ namespace GameTest1
     public struct GameRoom
     {
         public GameObject[] gameObj;
-        public int countOfObjects;
+        public int lastObjectIndex;
         private GameMap map;
         const int DEFAULT_ARRAY_LENGTH = 500;
-        //current obj?????
+
 
         public void CreateLevelStorage() // arrayLength - размер массива GameObject[]
         {
 
             gameObj = new GameObject[DEFAULT_ARRAY_LENGTH];
-            countOfObjects = 0;
+            lastObjectIndex = -1;
         }
 
         public void AddGameObject(GameObject addingObject)
         {
-            gameObj[countOfObjects] = addingObject;
-            gameObj[countOfObjects].Index = countOfObjects;
-            ++countOfObjects;
+            int index;
+            if (FindFreePlace(out index))
+            {
+                gameObj[index] = addingObject;
+                gameObj[index].Index = index;
+                gameObj[index].IsActive = true;
+                ++lastObjectIndex;
+            }
+            
+        }
+
+        public void DeleteGameObject(GameObject deletingObj)
+        {
+            gameObj[deletingObj.Index].IsActive = false;
+            if (deletingObj.Index == lastObjectIndex)
+            {
+                --lastObjectIndex;
+            }
+            
         }
 
         public void AddMap(GameMap gameMap)
@@ -41,7 +57,7 @@ namespace GameTest1
         {
             // войвращает номер индекса игрока, если его нет то возвр. -1
             int playerIndex = -1;
-            for (int i = 0; i < countOfObjects; i++)
+            for (int i = 0; i <= lastObjectIndex; i++)
             {
                 if (gameObj[i].ObjTag == Tags.Player)
                 {
@@ -51,6 +67,22 @@ namespace GameTest1
             }
 
             return playerIndex;
+        }
+
+        private bool FindFreePlace(out int index)
+        {
+            bool success = false;
+            index = 0;
+            for (int i = 0; i < gameObj.Length; i++)
+            {
+                if (i > lastObjectIndex || !gameObj[i].IsActive)
+                {
+                    index = i;
+                    success = true;
+                    break;
+                }
+            }
+            return success;
         }
     }
 

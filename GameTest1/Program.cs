@@ -15,28 +15,11 @@ namespace GameTest1
 
         static void Main(string[] args)
         {
-
-           
-
             Settings.ConsoleSetings();
 
             ModelViev.PrintBracket();
 
-            GameRoom level_1 = new GameRoom();
-            level_1.CreateLevelStorage();
-
-            CharacterConstructor characterConstructor = new CharacterConstructor();
-            GameObject player = characterConstructor.CreatePlayer(10, 30);
-            GameObject bBeagle = characterConstructor.CreateBlindBeagle(12, 16);
-            level_1.AddGameObject(player);
-            level_1.AddGameObject(bBeagle);
-            level_1.AddGameObject(characterConstructor.CreateBlindBeagle(30, 16));
-            level_1.AddGameObject(characterConstructor.CreateBlindBeagle(50, 16));
-            
-            level_1.AddMap(new MapConstructor().Tutorial_1());
-
- 
-            CollisionChecker collChecker = new CollisionChecker();
+             GameRoom level_1 = new GameRoomConstructor().Init();
             Controller controller = new Controller();
 
             UI.Show(level_1);
@@ -46,25 +29,19 @@ namespace GameTest1
             fps.CreateFpsCalculator();
             do
             {
-                //   ---=== INPUT ===---
-
                 if (Console.KeyAvailable) // проверка на то, была ли нажата кнопка
-                {
-                    //key = Console.ReadKey(true).Key;
-                    new Brain().SetPlayerDecision(level_1, controller.GetActionFromKey(Console.ReadKey(true).Key));
+                { 
+                    // берем нажатую клавишу и передаем ее "Мозгу", который даст Player-у задачу, идти, стрелять и тд.
+                    new Brain().SetPlayerDecision(level_1, controller.GetActionFromKey(Console.ReadKey(true).Key)); 
                 }
-                // Обработка вводных данных
-                //controller от водимого знака возвращает енам с Юзер екшн
 
-
-                new ActionMaker().MakeAction(ref level_1, frameTime);
-
-
-
-                //brain.SetPlayerAction(UnitActions.None);
+                // берем все обьекты и выполняем все их действия
+                new ActionMaker().MakeВeliberateAction(ref level_1, frameTime); // передаем frameTime для учета скорости
 
                 // проверка на выход за рамки консоли
                 PositionCl.CheckOverflow(ref level_1, Settings.GetGameArea());
+
+                new CollisionPolice().Review(ref level_1);
 
                 // затирание старой позиции и рисование новой, если позиция поменялась
                 UI.Refresh(level_1);
@@ -79,7 +56,8 @@ namespace GameTest1
                     UI.PrintLog(Program.log);
                 }
 #endif
-                UI.ShowFPS(fps.EndOfFrame(out int countOfFrames), countOfFrames);
+                int countOfFrames;
+                UI.ShowFPS(fps.EndOfFrame(out countOfFrames), countOfFrames);
 
                 Console.SetCursorPosition(Settings.GetGameArea().To.newPos.x + 5, 6);
                 Console.Write("HP = {0}   ", level_1.gameObj[0].HP);
@@ -89,3 +67,4 @@ namespace GameTest1
         }
     }
 }
+

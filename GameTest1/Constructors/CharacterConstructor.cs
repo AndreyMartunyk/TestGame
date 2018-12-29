@@ -30,6 +30,7 @@ namespace GameTest1
             player.Slowness = 1;
             player.ObjTag = Tags.Player;
             player.Ui.Viev = "(o_o)";
+            
                            
 
             return player;

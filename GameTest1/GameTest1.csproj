@@ -46,14 +46,18 @@
   <ItemGroup>
     <Compile Include="ActionMaker.cs" />
     <Compile Include="Area.cs" />
-    <Compile Include="Brain.cs" />
+    <Compile Include="Constructors\GameRoomConstructor.cs" />
+    <Compile Include="NervousSystem\Brain.cs" />
+    <Compile Include="CollisionPolice\CollisionJudge.cs" />
+    <Compile Include="CollisionPolice\CollisionPolice.cs" />
     <Compile Include="Constructors\BulletConstructor.cs" />
     <Compile Include="Constructors\CharacterConstructor.cs" />
-    <Compile Include="CollisionChecker.cs" />
+    <Compile Include="CollisionPolice\CollisionChecker.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="CoordinateGrid\Coordinate.cs" />
-    <Compile Include="Events.cs" />
+    <Compile Include="GameEvents.cs" />
     <Compile Include="FpsCalculator.cs" />
+    <Compile Include="NervousSystem\NervousSystem.cs" />
     <Compile Include="UI\ObjUI.cs" />
     <Compile Include="UnitActions.cs" />
     <Compile Include="UI\GameColors.cs" />
@@ -80,5 +84,6 @@
   <ItemGroup>
     <Content Include="Info\TypesOfGameObjects.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

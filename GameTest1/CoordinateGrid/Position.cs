@@ -29,38 +29,36 @@ namespace GameTest1
     {
         public static void Move(ref GameRoom level, ref GameObject moovingObject, Direction dir, int countMove = 1)
         {
-            switch (dir)
+
+            if (moovingObject.IsActive)
             {
-                case Direction.Top:
-                    moovingObject.ObjArea.MoveNew(0, -countMove);
-                    break;
-                case Direction.Down:
-                    moovingObject.ObjArea.MoveNew(0, countMove);
-                    break;
-                case Direction.Left:
-                    moovingObject.ObjArea.MoveNew(-countMove , 0);;
-                    break;
-                case Direction.Right:
-                    moovingObject.ObjArea.MoveNew(countMove, 0);
-                    break;
-                default:
-                    break;     
+                switch (dir)
+                {
+                    case Direction.Top:
+                        moovingObject.ObjArea.MoveNew(0, -countMove);
+                        break;
+                    case Direction.Down:
+                        moovingObject.ObjArea.MoveNew(0, countMove);
+                        break;
+                    case Direction.Left:
+                        moovingObject.ObjArea.MoveNew(-countMove, 0); ;
+                        break;
+                    case Direction.Right:
+                        moovingObject.ObjArea.MoveNew(countMove, 0);
+                        break;
+                    default:
+                        break;
+                }
             }
+            //new CollisionPolice().Review(ref level);
+            //new CollisionChecker().RespondToCollision(ref level, ref moovingObject);
 
-            new CollisionChecker().RespondToCollision(ref level, ref moovingObject);
-
-            //CollisionChecker collChecker = new CollisionChecker();
-
-            //if (collChecker.CheckCollision(ref level, moovingObject) != GameEvents.NoneEvent)
-            //{
-            //    PositionCl.GetBackPos(ref moovingObject);
-            //}
 
         }
 
         public static void NewToOld(ref GameRoom level)
         {
-            for (int i = 0; i < level.countOfObjects; i++)
+            for (int i = 0; i <= level.lastObjectIndex; i++)
             {
                 NewToOld(ref level.gameObj[i]);     
             }
@@ -81,7 +79,8 @@ namespace GameTest1
 
         public static void CheckOverflow(ref GameRoom level, Area overflowArea)
         {
-            for (int i = 0; i < level.countOfObjects; i++)
+
+            for (int i = 0; i <= level.lastObjectIndex; i++)
             {
                 CheckOverflow(ref level.gameObj[i], overflowArea);
             }

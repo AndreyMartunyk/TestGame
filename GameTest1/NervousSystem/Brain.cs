@@ -16,7 +16,7 @@ namespace GameTest1
 
         public void MakeDecision(ref GameRoom level, Direction dir = Direction.None)
         {
-            for (int i = 0; i < level.countOfObjects; i++)
+            for (int i = 0; i <= level.lastObjectIndex; i++)
             {
                 MakeDecision(level, ref level.gameObj[i], dir);
             }
@@ -26,29 +26,31 @@ namespace GameTest1
         public void MakeDecision(GameRoom level, ref GameObject thinkingObject, Direction dir = Direction.None)
         {
             UnitActions action = UnitActions.None;
-
-            switch (thinkingObject.ObjTag)
+            if (thinkingObject.IsActive)
             {
+                switch (thinkingObject.ObjTag)
+                {
 
-                case Tags.Player:
-                    action = thinkingObject.Action;
-                    break;
-                case Tags.DamageToucher:
-                case Tags.Stone:
-                    action = UnitActions.None;                
-                    break;
-                case Tags.BlindBeagle:
-                    action = BlindBeagle(level, thinkingObject);
-                    break;
-                case Tags.Bullet:
-                    action = Bullet(thinkingObject, dir);
-                    break;
-                case Tags.Zone:
-                    break;
-                default:
-                case Tags.None:
-                    //TODO: Add log about error
-                    break;
+                    case Tags.Player:
+                        action = thinkingObject.Action;
+                        break;
+                    case Tags.DamageToucher:
+                    case Tags.Stone:
+                        action = UnitActions.None;
+                        break;
+                    case Tags.BlindBeagle:
+                        action = BlindBeagle(level, thinkingObject);
+                        break;
+                    case Tags.Bullet:
+                        action = Bullet(thinkingObject, dir);
+                        break;
+                    case Tags.Zone:
+                        break;
+                    default:
+                    case Tags.None:
+                        //TODO: Add log about error
+                        break;
+                }
             }
 
             thinkingObject.Action = action;
@@ -86,36 +88,38 @@ namespace GameTest1
         private UnitActions BlindBeagle (GameRoom level, GameObject beagle)
         {
             UnitActions beagleAction = UnitActions.None;
-            int playerIndex = level.FindPlayerIndex();
-            Coordinate playerCenter = level.gameObj[playerIndex].ObjArea.GetCenter();
-            Coordinate beagleCenter = beagle.ObjArea.GetCenter();
-
-            int absX = Math.Abs(playerCenter.x - beagleCenter.x);
-            int absY = Math.Abs(playerCenter.y - beagleCenter.y);
-
-            if (absX > absY)
+            if (beagle.IsActive)
             {
-                if (playerCenter.x >= beagleCenter.x)
+                int playerIndex = level.FindPlayerIndex();
+                Coordinate playerCenter = level.gameObj[playerIndex].ObjArea.GetCenter();
+                Coordinate beagleCenter = beagle.ObjArea.GetCenter();
+
+                int absX = Math.Abs(playerCenter.x - beagleCenter.x);
+                int absY = Math.Abs(playerCenter.y - beagleCenter.y);
+
+                if (absX > absY)
                 {
-                    beagleAction = UnitActions.MoveRight;
+                    if (playerCenter.x >= beagleCenter.x)
+                    {
+                        beagleAction = UnitActions.MoveRight;
+                    }
+                    else
+                    {
+                        beagleAction = UnitActions.MoveLeft;
+                    }
                 }
                 else
                 {
-                    beagleAction = UnitActions.MoveLeft;
+                    if (playerCenter.y >= beagleCenter.y)
+                    {
+                        beagleAction = UnitActions.MoveDown;
+                    }
+                    else
+                    {
+                        beagleAction = UnitActions.MoveTop;
+                    }
                 }
             }
-            else
-            {
-                if (playerCenter.y >= beagleCenter.y)
-                {
-                    beagleAction = UnitActions.MoveDown;
-                }
-                else
-                {
-                    beagleAction = UnitActions.MoveTop;
-                }
-            }
-
             return beagleAction;
         }
 
